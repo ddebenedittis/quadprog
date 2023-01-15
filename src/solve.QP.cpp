@@ -262,7 +262,8 @@ int qpgen2_(double *G, double *av, int n,
             // Store in ztn the rate at which the slack variable is increased. This is used to update the objective value below.
 
             int t2inf = fabs(dot(n, zv, zv)) <= vsmall;
-            double t2, ztn;
+            double t2 = 0;
+            double ztn = 0;
             if (!t2inf) {
                 ztn = dot(n, zv, &C[(iadd - 1) * n]);
                 t2 = fabs(slack) / ztn;

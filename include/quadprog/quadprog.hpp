@@ -15,7 +15,10 @@
 /// @param[out] x 
 /// @param[in]  meq 
 /// @param[in]  factorized 
-/// @return int 
+///
+/// @retval 0 OK
+/// @retval 1 Constraints are inconsistent, no solution.
+/// @retval 2 Matrix G is not positive definite.
 int solve_quadprog(
     Eigen::MatrixXd& G,
     Eigen::VectorXd& g0,
