@@ -23,7 +23,7 @@ int solve_quadprog(
     int factorized
 ) {
     int n = G.rows();
-    int q = C.rows();
+    int q = C.cols();
 
     double obj;
 

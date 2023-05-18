@@ -19,6 +19,8 @@ int result = solve_quadprog(
 
 Where the solution of the QP problem `x` is passed always as non-const reference.
 
+`G`, `g0`, `C`, and `c0` can either be passed as non-const l-value references or as r-value references (if they are l-values use `std::move`).
+
 ```
 Solve a strictly convex quadratic program
 
