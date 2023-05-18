@@ -9,17 +9,27 @@ Forked from [`quadprog`](https://github.com/quadprog/quadprog) to create a ROS2 
 int result = solve_quadprog(
    G,
    g0,
-   CI,
-   ci0,
-   x
+   C,
+   c0,
+   x,
+   m_eq [default = 0],
+   factorized [default = 0]
 );
 ```
+
+Where the solution of the QP problem `x` is passed always as non-const reference.
 
 ```
 Solve a strictly convex quadratic program
 
-Minimize     1/2 x^T G x + g0^T x
-Subject to   CI x + ci0 >= 0
+Minimize     1/2 x^T G x - g0^T x
+Subject to   CE.T x - ce0  = 0
+             CI.T x - ci0 >= 0
+
+Where CE = C[:, :m_eq]
+      CI = C[:, m_eq:]
+      ce0 = c0[:meq]
+      ci0 = c0[meq:]
 
 This routine uses the the Goldfarb/Idnani dual algorithm [1].
 

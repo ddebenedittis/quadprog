@@ -5,16 +5,22 @@
 #include <Eigen/Core>
 
 /// @brief Solves the following problem:
-/// Minimize     1/2 x^T G x + g0^T x,
-/// Subject to   CI x + ci0 >= 0
-/// 
-/// @param[in]  G 
-/// @param[in]  g0 
-/// @param[in]  C 
-/// @param[in]  c0 
-/// @param[out] x 
-/// @param[in]  meq 
-/// @param[in]  factorized 
+// Minimize     1/2 x^T G x - g0^T x
+// Subject to   CE.T x - ce0  = 0
+//              CI.T x - ci0 >= 0
+//
+// Where CE = C[:, :m_eq]
+//       CI = C[:, m_eq:]
+//       ce0 = c0[:meq]
+//       ci0 = c0[meq:]
+///
+/// @param[in]  G
+/// @param[in]  g0
+/// @param[in]  C
+/// @param[in]  c0
+/// @param[out] x
+/// @param[in]  meq
+/// @param[in]  factorized
 ///
 /// @retval 0 OK
 /// @retval 1 Constraints are inconsistent, no solution.

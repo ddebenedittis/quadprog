@@ -33,10 +33,6 @@ int solve_quadprog(
     std::vector<int> iter(2);
     std::vector<double> work(2*n + 2*q + min(n,q)*(min(n,q)+5)/2);
 
-    g0 = -g0;
-    C.transposeInPlace();
-    c0 = -c0;
-
     return qpgen2_(
         G.data(), g0.data(), n,
         x.data(), &lagr[0], &obj,
